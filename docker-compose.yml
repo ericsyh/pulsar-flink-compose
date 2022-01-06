@@ -26,6 +26,7 @@ services:
     volumes:
       - ./logs/taskmanager/:/opt/flink/log/
       - ./logs/flink-checkpoints/:/flink-checkpoints
+    hostname: "taskmanager"
     expose:
       - "6121"
       - "6122"
@@ -42,3 +43,16 @@ services:
         state.backend: rocksdb
         state.checkpoints.dir: file:///flink-checkpoints
         classloader.resolve-order: parent-first
+
+  standalone:
+    image: apachepulsar/pulsar:2.8.1
+    hostname: "standalone"
+    expose:
+      - 8080
+      - 6650
+    environment:
+      - BOOKIE_MEM=" -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
+    command: >
+      /bin/bash -c
+      "bin/apply-config-from-env.py conf/standalone.conf
+      && exec bin/pulsar standalone --advertised-address standalone"
