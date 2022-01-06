@@ -5,8 +5,9 @@ services:
     image: flink:1.12.7-scala_2.12
     volumes:
       - ./logs/jobmanager/:/opt/flink/log/
-      - ./config/flink-jars/:/opt/flink/connector-lib/
       - ./logs/flink-checkpoints/:/flink-checkpoints
+      - ./flink-jars/:/opt/flink/connector-lib/
+      - ./flink-sql-conf:/opt/flink/sql-conf
     hostname: "jobmanager"
     expose:
       - "6123"
@@ -40,3 +41,4 @@ services:
         taskmanager.numberOfTaskSlots: 8
         state.backend: rocksdb
         state.checkpoints.dir: file:///flink-checkpoints
+        classloader.resolve-order: parent-first
