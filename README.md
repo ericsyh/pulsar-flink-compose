@@ -2,7 +2,7 @@
 
 A sample of Pulsar Flink SQL connector in docker-compose.
 
-## How to run
+## Run the environment
 
 ```
 # Clone the repo
