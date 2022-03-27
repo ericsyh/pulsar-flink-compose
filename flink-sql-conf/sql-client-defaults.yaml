@@ -53,11 +53,10 @@ functions: [] # empty list
 # Define catalogs here.
 catalogs:
   - name: pulsar
-    type: pulsar
+    type: pulsar-catalog
     default-database: "public/default"
-    service-url: "pulsar://standalone:6650"
-    admin-url: "http://standalone:8080"
-    format: json
+    catalog-service-url: "pulsar://standalone:6650"
+    catalog-admin-url: "http://standalone:8080"
 # A typical catalog definition looks like:
 #  - name: myhive
 #    type: hive

@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   jobmanager:
-    image: flink:1.12.7-scala_2.12
+    image: flink:1.13.6-scala_2.12
     volumes:
       - ./logs/jobmanager/:/opt/flink/log/
       - ./logs/flink-checkpoints/:/flink-checkpoints
@@ -22,7 +22,7 @@ services:
         state.checkpoints.dir: file:///flink-checkpoint
   
   taskmanager:
-    image: flink:1.12.7-scala_2.12
+    image: flink:1.13.6-scala_2.12
     volumes:
       - ./logs/taskmanager/:/opt/flink/log/
       - ./logs/flink-checkpoints/:/flink-checkpoints
@@ -52,6 +52,7 @@ services:
       - 6650
     environment:
       - BOOKIE_MEM=" -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
+      - brokerDeleteInactiveTopicsEnabled="false"
     command: >
       /bin/bash -c
       "bin/apply-config-from-env.py conf/standalone.conf
