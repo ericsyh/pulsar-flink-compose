@@ -25,7 +25,10 @@ docker-compose exec jobmanager ./bin/sql-client.sh embedded -e ./sql-conf/sql-cl
 2. Create Database
 
 ```
-CREATE DATABASE Flink
+CREATE DATABASE Flink;
+```
+```
+USE Flink;
 ```
 
 3. Create table
